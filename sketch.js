@@ -8,7 +8,7 @@ var display1,display_image1,prevent,prevent_image,chat,chat_image,input1,chat1
 var database, chatofperson2,message,message2
 var advice,advice_image,next,next_image;
 var CHATOFPERSON1,ok,pointer;
-var back,back_img, background_img;
+var back,back_img, background_img ,peace,gameicon,gameimage,gameback;
 function preload(){
   start_image=loadImage("getstarted.png");
   tought_image=loadImage("tought1.png");
@@ -28,6 +28,9 @@ advice_image=loadImage("advice.png")
 back_img=loadImage("back.jpg");
 next_image=loadImage("Next.png")
 background_img=loadImage("buddhaimage.png")
+peace=loadImage("peace1.png")
+gameimage=loadImage("gameicon.png")
+gameback=loadImage("gamebackground.png")
 }
 
 function setup() {
@@ -62,14 +65,14 @@ image4=createSprite(displayWidth/2-40,displayHeight/2-40,1,1)
   yes5=createSprite(displayWidth/2-150,displayHeight/2+40,1,1)
   no5=createSprite(displayWidth/2+150,displayHeight/2+40,1,1)
 
-  prevent=createSprite(displayWidth/2-200,displayHeight/2-70,1,1)
+  prevent=createSprite(displayWidth/2-300,displayHeight/2-70,1,1)
  chat=createSprite(displayWidth/2-50,500,1,1)
 
  input1=createInput();
 
  back=createSprite(800,650,1,1);
- next=createSprite(1000,550,1,1)
-
+ next=createSprite(1000,600,1,1)
+ gameicon=createSprite(1200,600,1,1)
 }
 
 function draw() {
@@ -282,6 +285,7 @@ no5.destroy();
 image5.destroy();
   }
 if(gameState==="tips1"){
+  background(peace)
 prevent.addImage(prevent_image);
 prevent.scale=1.5
 
@@ -292,6 +296,7 @@ no4.destroy();
 image4.destroy();
 image5.destroy();
 next.addImage(next_image)
+next.scale=0.2
 
 }
 
@@ -303,6 +308,7 @@ if(mousePressedOver(next)){
 
 if(gameState==="expert"){
   background(background_img)
+  gameicon.addImage(gameimage)
   fill("maroon")
   textSize(30)
   text("if you are still not convinced or stress relifed you can have a chance to talk ",100,100)
@@ -311,6 +317,16 @@ if(gameState==="expert"){
   text("Name:Bhanu,",100,220)
   text("his mail id is",100,270)
   text("MAIL ID:bhanumandada@yahoo.com",100,330 )
+  text("if you are interested to play games to burst out all",100,550)
+  text("your stress , press the game icon ro play games",100,600)
+}
+if(mousePressedOver(gameicon)){
+  gameicon.destroy()
+  background(0)
+  gameState="game"
+}
+if(gameState==="game"){
+  background(gameback);
 }
 
 if(gameState==="chat"){
